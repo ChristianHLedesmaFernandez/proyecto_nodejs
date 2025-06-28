@@ -1,12 +1,9 @@
 import express from "express";
 import cors from 'cors'
-
-
-import rutasProductos from './src/rutas/productos.js';
+import rutasProductos from './src/rutas/productos.rutas.js';
 
 
 const app = express();
-
 
 /*
 app.use((req, res, next) => {
@@ -15,7 +12,7 @@ app.use((req, res, next) => {
 });
 */
 
-app.use(cors()); // para permitir origenes crusados.
+app.use(cors()); // Permitir origenes crusados.
 app.use(express.static("public"));
 app.use(express.json());
 
@@ -23,8 +20,6 @@ app.use(express.json());
 
 // Uso del router en la ruta /api/products
 app.use('/', rutasProductos);
-
-
 
 // midelware
 app.use((req, res, next) => {
