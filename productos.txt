@@ -1,112 +1,67 @@
 [
-   {
-        "id": 1,   
-        "nombre": "Cafe con leche",           
-        "precio": 12
-    }, 
+    { 
+        "id": 1,
+        "nommbre": "Licuado de Fresa",        
+        "descripcion": "Licuado cremoso de fresas frescas",             
+        "stock": 30,	
+        "precio": 18, 
+        "categoria": "Licuado"
+    },
+    { 
+        "id": 2,
+        "nommbre": "Tarta de Manzana",	        
+        "descripcion": "Tarta casera con relleno de manzana y canela",	    
+        "stock": 15,	
+        "precio": 14.8,	
+        "categoria": "Pasteleria"
+    },
     {
-        "id": 2,   
-        "nombre": "Capuchino",                
-        "precio": 8
-        }, 
-    {
-        "id": 3,   
-        "nombre": "Media Luna",               
-        "precio": 19890
-        }, 
-    {
-        "id": 4,   
-        "nombre": "Tostado de JyQ",           
-        "precio": 100
-        }, 
-    {
-        "id": 5,   
-        "nombre": "Te",                       
-        "precio": 8
+        "id": 3,
+        "nommbre": "Caipirinha",	            
+        "descripcion": "Coctel brasileño con cachaca, lima y azucar",	    
+        "stock": 18,	
+        "precio": 23.5,	
+        "categoria": "Tragos"
+    },
+    { 
+        "id": 4,
+        "nommbre": "Gancia batido",	            
+        "descripcion": "Gancia con limon y azucar",	                        
+        "stock": 25,	
+        "precio": 15,	    
+        "categoria": "Tragos"
+    },
+    { 
+        "id": 5,
+        "nommbre": "Fernet con coca",	        
+        "descripcion": "Fernet con coca cola", 	                            
+        "stock": 2,	
+        "precio": 14,	    
+        "categoria": "Tragos"
         },
+    { 
+        "id": 6,
+        "nommbre": "Lemon pie",	            
+        "descripcion": "Pastel de limon con merengue italiano",	            
+        "stock": 29,
+        "precio": 365,	    
+        "categoria": "Pasteleria"
+    },
+    { 
+        "id": 7,
+        "nommbre": "Tostado de crudo y tomate",	
+        "descripcion": "Sandwich de jamon crudo y tomate tostado",	        
+        "stock": 12,	
+        "precio": 125.8,	
+        "categoria": "Cafeteria"
+    },
     {
-        "id": 6,   
-        "nombre": "Licuado de Frutos Rojos",  
-        "precio": 182
-        }, 
-    {
-        "id": 7,   
-        "nombre": "Jugo de Limon",            
-        "precio": 48
-        },
-    {
-        "id": 8,   
-        "nombre": "Mil Hojas",                
-        "precio": 98
-        },
-    {
-        "id": 9,   
-        "nombre": "Panini",                   
-        "precio": 190
-        }, 
-    {
-        "id": 10,  
-        "nombre": "Torta de Ricota",          
-        "precio": 100
-        }, 
-    {
-        "id": 11,  
-        "nombre": "Te Negro",                 
-        "precio": 8
-        },
-    {
-        "id": 12,  
-        "nombre": "Selva Negra",              
-        "precio": 56
-        },
-    {
-        "id": 13,  
-        "nombre": "Te con leche",             
-        "precio": 15
-        }, 
-    {
-        "id": 14,  
-        "nombre": "Cortado",                  
-        "precio": 8
-        }, 
-    {
-        "id": 15,  
-        "nombre": "Lemon Pie",                
-        "precio": 19890
-        }, 
-    {
-        "id": 16,  
-        "nombre": "Media Luna de JyQ",        
-        "precio": 100
-        }, 
-    {
-        "id": 17,  
-        "nombre": "Moca",                     
-        "precio": 12
-        }, 
-    {
-        "id": 18,  
-        "nombre": "Submarino",                
-        "precio": 8
-        },
-    {
-        "id": 19,  
-        "nombre": "Red Velvet",               
-        "precio": 890
-        }, 
-    {
-        "id": 20,  
-        "nombre": "Pebete de JyQ",            
-        "precio": 100}, 
-    {
-        "id": 21,  
-        "nombre": "Licuado",                  
-        "precio": 8
-        },
-    {
-        "id": 22,  
-        "nombre": "Torta de Ricota",          
-        "precio": 28
+        "id": 8,
+        "nommbre": "Dahikiri de frutilla",	    
+        "descripcion": "Frutillas con vodka",	                            
+        "stock": 14,	 
+        "precio": 15.8,
+        "categoria": "Tragos"
     }
-]            
 
+]

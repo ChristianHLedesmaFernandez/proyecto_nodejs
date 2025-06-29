@@ -1,13 +1,13 @@
 import { 
-        mdlgetProductos
+        mdlgetProductos,
+        mdlborrarProducto
 } from '../modelos/productos.modelos.js'; 
 
 //                                                      GET
 export const  ctrlmsjBienvenida = async (req, res) => {
     res.send("Hola Soy tu servidor Express respondiendo un GET");
 };
-export const  ctrlgetProductos = async(req, res) => { 
-    
+export const  ctrlgetProductos = async(req, res) => {    
     const productos = mdlgetProductos();
     if (productos) {
         res.json(productos); 
@@ -82,10 +82,13 @@ export const ctrlmodificarProducto = async (req, res) => {
 //                                                      DELETE
 export const ctrlborrarProducto = async(req, res) => {
   const productoId = parseInt(req.params.id, 10);
-  const productoIndex = productos.findIndex((p) => p.id === productoId);
-  if (productoIndex === -1) {
+
+  //const productoIndex = productos.findIndex((p) => p.id === productoId);
+  
+  if (productoId === -1) {
     return res.status(404).json({ error: "Producto no encontrado" });
   }
-  productos.splice(productoIndex, 1);
+  mdlborrarProducto(productoId)
+  
   res.status(204).send();
 }
