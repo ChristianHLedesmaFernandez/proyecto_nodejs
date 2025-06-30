@@ -13,13 +13,14 @@ app.use((req, res, next) => {
 */
 
 app.use(cors()); // Permitir origenes crusados.
-app.use(express.static("public"));
+//app.use(express.static("public"));
 app.use(express.json());
 
 
 
 // Uso del router en la ruta /api/products
-app.use('/', rutasProductos);
+app.use('/api', rutasProductos);
+
 
 // midelware
 app.use((req, res, next) => {

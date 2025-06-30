@@ -6,14 +6,10 @@ import {
         ctrlcrearProducto,
         ctrlmodificarProducto,
         ctrlborrarProducto
-} from '../controladores/productos.controlador.js'; 
-
-
+} from '../controladores/productos.controlador.js';
 import express from 'express';
+
 const rutas = express.Router();
-
-
-
 
 // Ruta GET /
 rutas.get('/',ctrlmsjBienvenida);
@@ -35,6 +31,4 @@ rutas.put('/productos/:id',ctrlmodificarProducto);
 // Ruta DELETE /productos/:id
 rutas.delete("/productos/:id", ctrlborrarProducto);
 
-
-
-export default rutas; 
+export default rutas;

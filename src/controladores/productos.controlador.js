@@ -1,70 +1,115 @@
 import { 
         mdlgetProductos,
+        mdlgetProductosID, 
+        mdlgetProductosBuscar, 
+        mdlGuardarProducto,
         mdlborrarProducto
-} from '../modelos/productos.modelos.js'; 
+} from '../modelos/productos.modelos.js';
+import { 
+    esNombre, 
+    esDescripcion, 
+    esStock, 
+    esPrecio, 
+    esCategoria 
+} from "../funciones.js";
 
 //                                                      GET
 export const  ctrlmsjBienvenida = async (req, res) => {
-    res.send("Hola Soy tu servidor Express respondiendo un GET");
-};
+    res.send("Proyecto Final Curso NODE JS\nChristian H. Ledesma Fernandez");
+ };
 export const  ctrlgetProductos = async(req, res) => {    
-    const productos = mdlgetProductos();
+    const productos = await mdlgetProductos();
     if (productos) {
         res.json(productos); 
     } else {
-        res.status(404).json({ error: "No Hay el producto"});
-    }
-        
-    
-    
+        res.status(404).json({ error: "No Se pudieron cargar los productos"});
+    } 
 };
-export const  ctrlgetProductosID = async (req, res) => { 
-    const producto = productos.find((item) => item.id == req.params.id);
+export const  ctrlgetProductosID = async (req, res) => {      
+    const producto = await mdlgetProductosID(req.params.id);  
     if (!producto) {
         res.status(404).json({ error: "No existe el producto"});
     }     
-    res.json(producto);    
+    res.json(producto);   
 };
 export const  ctrlgetProductosBuscar = async (req, res) => {
-    
-    const clave =  Object.keys(req.query);
     let buscado = [];
-    console.log(clave[0])
-    switch (clave[0]) {
-        case "nombre":
-            console.log("buscar por nombre")
-            const {nombre} = req.query;
-            buscado = productos.filter((item) => 
-            item.nombre.toLocaleLowerCase().includes(nombre.toLocaleLowerCase())); 
-            break;
-        case "precio":
-            console.log("buscar por Precio")
-            const {precio} = req.query;
-            buscado = productos.filter((item) => item.precio === Number(precio)); // coincidencia excta
-               // item.precio.toString().includes(precio)); 
-            
-            break;
+    let msj = "";
+    let resultado = true;    
+    const campo = Object.keys(req.query)[0];
+    let valor = req.query[campo];
+    try {            
+        switch (campo) {
+            case "nombre":
+                valor = valor.toLowerCase();
+                valor = valor.charAt(0).toUpperCase() + valor.slice(1);
+                //valor = valor      
+                esNombre(valor);
+                break;
+            case "descripcion":
+                valor = valor.toLowerCase();
+                valor = valor.charAt(0).toUpperCase() + valor.slice(1);
+                //
+                esDescripcion(valor);
+                break;
+            case "stock":
+                valor = Number(valor);
+                esStock(valor);                
+                break;
+            case "precio":
+                valor = Number(valor);
+                esPrecio(valor);
+                break;
+            case "categoria":
+                valor = valor.toLowerCase();
+                valor = valor.charAt(0).toUpperCase() + valor.slice(1);
+                //
+                esCategoria(valor);          
+                break;
+            default:
+                msj = "el campo a buscar no corresponde a un campo valido!";
+                resultado = false;
+            }
+    } catch (e) {
+        resultado = false;
+        msj =  e.message;            
     }
-
-    
-       
-    res.json(buscado);
-
-
+    if (resultado) {
+        try {
+        buscado = await mdlgetProductosBuscar(campo, valor);
+        if (buscado.length === 0) {
+            res.status(404).json({ error: "No se encontraron coincidencias." });
+        } else {
+            res.json(buscado);
+        }
+        } catch (e) {
+        console.error("Error al buscar productos:", e);
+        res.status(500).json({ error: "Error interno al buscar productos." });
+        }
+    } else {
+        res.status(400).json({ error: msj });
+    }
 };
-
 //                                                      POST
 export const ctrlcrearProducto = async (req, res) => {
-    const { nombre, precio } = req.body;
-    const nuevoProducto = {
-        id: productos.length +1,
+    const { id, nombre, descripcion, stock, precio, categoria } = req.body;
+    const nuevoProducto = {       
         nombre,
-        precio
+        descripcion,
+        stock,
+        precio,
+        categoria
     }
-    productos.push(nuevoProducto);
-    console.log(productos)
-    res.status(201).json(nuevoProducto);
+    //
+    console.log(nuevoProducto)
+    //
+    const producto = await mdlGuardarProducto(nuevoProducto);
+
+    
+    res.status(201).json(producto);
 }
+
+
 //                                                      PUT
 export const ctrlmodificarProducto = async (req, res) => {
     const productoId = parseInt (req.params.id, 10); // pasando a Base 10
@@ -81,14 +126,15 @@ export const ctrlmodificarProducto = async (req, res) => {
 
 //                                                      DELETE
 export const ctrlborrarProducto = async(req, res) => {
-  const productoId = parseInt(req.params.id, 10);
+  const productoId = req.params.id;
 
-  //const productoIndex = productos.findIndex((p) => p.id === productoId);
-  
+ 
+  /*
   if (productoId === -1) {
     return res.status(404).json({ error: "Producto no encontrado" });
   }
-  mdlborrarProducto(productoId)
+  */
+  const producto = await mdlborrarProducto(productoId);
   
   res.status(204).send();
 }

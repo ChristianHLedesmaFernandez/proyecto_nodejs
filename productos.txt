@@ -1,7 +1,7 @@
 [
     { 
         "id": 1,
-        "nommbre": "Licuado de Fresa",        
+        "nombre": "Licuado de Fresa",        
         "descripcion": "Licuado cremoso de fresas frescas",             
         "stock": 30,	
         "precio": 18, 
@@ -9,7 +9,7 @@
     },
     { 
         "id": 2,
-        "nommbre": "Tarta de Manzana",	        
+        "nombre": "Tarta de Manzana",	        
         "descripcion": "Tarta casera con relleno de manzana y canela",	    
         "stock": 15,	
         "precio": 14.8,	
@@ -17,7 +17,7 @@
     },
     {
         "id": 3,
-        "nommbre": "Caipirinha",	            
+        "nombre": "Caipirinha",	            
         "descripcion": "Coctel brasileño con cachaca, lima y azucar",	    
         "stock": 18,	
         "precio": 23.5,	
@@ -25,7 +25,7 @@
     },
     { 
         "id": 4,
-        "nommbre": "Gancia batido",	            
+        "nombre": "Gancia batido",	            
         "descripcion": "Gancia con limon y azucar",	                        
         "stock": 25,	
         "precio": 15,	    
@@ -33,7 +33,7 @@
     },
     { 
         "id": 5,
-        "nommbre": "Fernet con coca",	        
+        "nombre": "Fernet con coca",	        
         "descripcion": "Fernet con coca cola", 	                            
         "stock": 2,	
         "precio": 14,	    
@@ -41,7 +41,7 @@
         },
     { 
         "id": 6,
-        "nommbre": "Lemon pie",	            
+        "nombre": "Lemon pie",	            
         "descripcion": "Pastel de limon con merengue italiano",	            
         "stock": 29,
         "precio": 365,	    
@@ -49,7 +49,7 @@
     },
     { 
         "id": 7,
-        "nommbre": "Tostado de crudo y tomate",	
+        "nombre": "Tostado de crudo y tomate",	
         "descripcion": "Sandwich de jamon crudo y tomate tostado",	        
         "stock": 12,	
         "precio": 125.8,	
@@ -57,7 +57,7 @@
     },
     {
         "id": 8,
-        "nommbre": "Dahikiri de frutilla",	    
+        "nombre": "Dahikiri de frutilla",	    
         "descripcion": "Frutillas con vodka",	                            
         "stock": 14,	 
         "precio": 15.8,
