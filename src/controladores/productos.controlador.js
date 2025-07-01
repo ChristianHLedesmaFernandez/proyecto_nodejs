@@ -3,6 +3,7 @@ import {
         mdlgetProductosID, 
         mdlgetProductosBuscar, 
         mdlGuardarProducto,
+        mdlModificarProducto,
         mdlborrarProducto
 } from '../modelos/productos.modelos.js';
 import { 
@@ -92,49 +93,61 @@ export const  ctrlgetProductosBuscar = async (req, res) => {
 };
 //                                                      POST
 export const ctrlcrearProducto = async (req, res) => {
-    const { id, nombre, descripcion, stock, precio, categoria } = req.body;
-    const nuevoProducto = {       
-        nombre,
-        descripcion,
-        stock,
-        precio,
-        categoria
-    }
-    //
-    console.log(nuevoProducto)
-    //
-    const producto = await mdlGuardarProducto(nuevoProducto);
-
-    
-    res.status(201).json(producto);
-}
-
-
+    const { nombre, descripcion, stock, precio, categoria } = req.body; 
+    try {
+        esNombre(nombre);
+        esDescripcion(descripcion);
+        esStock(stock);
+        esPrecio(precio);
+        esCategoria(categoria);
+        const nuevoProducto = {       
+            nombre,
+            descripcion,
+            stock,
+            precio,
+            categoria
+        }
+        const producto = await mdlGuardarProducto(nuevoProducto);
+        res.status(201).json(producto);      
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    } 
+};
 //                                                      PUT
 export const ctrlmodificarProducto = async (req, res) => {
-    const productoId = parseInt (req.params.id, 10); // pasando a Base 10
-    const productoIndex = productos.findIndex((item) => item.id === productoId);
-    
-    if (productoIndex === -1) {
-        return res.status(404).json({ error: "Producto no encontrado" });
+    const id = req.params.id;
+    // 1- Verifico que el producto a modificar exista
+    const producto = await mdlgetProductosID(id);  
+    if (!producto) {
+        return res.status(404).json({ error: "No existe el Producto a Modificar"});
     }
-    const { nombre, precio } = req.body;
-    productos[productoIndex] = { id: productoId, nombre, precio};
-    console.log(productos[productoIndex]);
-    res.json(productos[productoIndex]);
- }
-
+    // 2- Verifico que los datos que se enviaron sean correctos
+    const datos = req.body;    
+    try {
+        if ("nombre" in datos) esNombre(datos.nombre);
+        if ("descripcion" in datos) esDescripcion(datos.descripcion);
+        if ("stock" in datos) esStock(Number(datos.stock));
+        if ("precio" in datos) esPrecio(Number(datos.precio));
+        if ("categoria" in datos) esCategoria(datos.categoria);
+        // 3- LLamo al modificar dentro de modelo, envio los campos a modificar y el id
+        await mdlModificarProducto(id, datos);
+        // 4- Vuelvo a consultar el producto actualizado
+        const productoActualizado = await mdlgetProductosID(id);
+        res.status(200).json({
+        mensaje: "Producto actualizado correctamente.",
+        producto: productoActualizado
+        });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
 //                                                      DELETE
 export const ctrlborrarProducto = async(req, res) => {
-  const productoId = req.params.id;
-
- 
-  /*
-  if (productoId === -1) {
-    return res.status(404).json({ error: "Producto no encontrado" });
-  }
-  */
-  const producto = await mdlborrarProducto(productoId);
-  
-  res.status(204).send();
-}
+    const productoId = req.params.id;
+    try {
+        const producto = await mdlborrarProducto(productoId);
+     res.status(204).send();
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }  
+};

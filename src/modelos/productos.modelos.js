@@ -1,10 +1,10 @@
 import { db } from '../data/data.js';
-
 import {
     collection,
     getDocs,
     getDoc,
     addDoc,
+    updateDoc,
     deleteDoc,
     doc,
     query,
@@ -37,10 +37,8 @@ export async function mdlgetProductosID(id) {
     } 
   } catch (error) {
     return null;
-  }
-  
+  }  
 };
-
 // Método para obtener un producto segun un campo dado 
 export async function mdlgetProductosBuscar (campo, valor){
   try {
@@ -59,13 +57,20 @@ export async function mdlgetProductosBuscar (campo, valor){
       throw new Error("Error al buscar productos");
   }
 };
-
 // Método para guardar un producto en Firestore 
-export async function mdlGuardarProducto(product) { 
-  await addDoc(coleccionProductos, product); 
-}; 
-
+export async function mdlGuardarProducto(producto) {       
+  await addDoc(coleccionProductos, producto); 
+};
+// Método para Modificar un producto en Firestore 
+export async function mdlModificarProducto(id, datos) {
+  const ref = doc(coleccionProductos, id);  
+  await updateDoc(ref, datos);
+};
 // Método para eliminar un producto por su ID 
 export async function mdlborrarProducto(id) { 
- await deleteDoc(doc(coleccionProductos, id)); 
+    const producto = await mdlgetProductosID(id);
+    if (!producto) {
+      throw new Error("No existe el Producto a eliminar");
+    }
+    await deleteDoc(doc(coleccionProductos, id));
 };

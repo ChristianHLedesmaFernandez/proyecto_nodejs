@@ -24,6 +24,7 @@ rutas.get('/productos/:id', ctrlgetProductosID);
 rutas.post('/productos',ctrlcrearProducto);
 // PATH
 // Se utiliza para modificar un campo no el registro completo.
+
 // PUT 
 // Ruta PUT /productos/:id
 rutas.put('/productos/:id',ctrlmodificarProducto);

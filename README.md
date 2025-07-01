@@ -28,7 +28,35 @@ Ej:
   http://localhost:3000/api/productos/buscar?categoria=Tragos
 
                                                             POST
+http://localhost:3000/api/productos
 
+body:
+    { 
+        "nombre": "dfsdf",	        
+        "descripcion": "Fernet con coca cola", 	                            
+        "stock": 2,	
+        "precio": 7,	    
+        "categoria": "Tragos"
+    }
+
+Verifica el correcto ingreso de datos,
+luego guarda en la base de datos.
                                                             PUT
-                                                            
+http://localhost:3000/api/productos/:id
+
+body:
+    { 
+        "nombre": "dfsdf",
+        "precio": 7,	    
+        "categoria": "Tragos"
+    }
+    
+Modifica el producto que coincida con el ID dado.
+Solo modifica los campos dados.
+
+
                                                            DELETE
+http://localhost:3000/api/productos/:id
+
+Borra el producto que coincida con al ID dado.
+
