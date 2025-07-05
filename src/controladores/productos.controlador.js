@@ -15,8 +15,16 @@ import {
 } from "../funciones.js";
 
 //                                                      GET
+
+export const ctrlLogin = async (req, res) => {
+    res.json("Logear");
+};
 export const  ctrlmsjBienvenida = async (req, res) => {
-    res.send("Proyecto Final Curso NODE JS\nChristian H. Ledesma Fernandez");
+    res.json([
+    ' Proyecto Final Curso NODE JS ',
+    'Christian H. Ledesma Fernandez'
+  ]);
+    
  };
 export const  ctrlgetProductos = async(req, res) => {    
     const productos = await mdlgetProductos();

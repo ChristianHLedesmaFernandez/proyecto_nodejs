@@ -1,4 +1,5 @@
 import { 
+        ctrlLogin,
         ctrlmsjBienvenida,
         ctrlgetProductos,
         ctrlgetProductosID, 
@@ -11,6 +12,9 @@ import express from 'express';
 
 const rutas = express.Router();
 
+
+// Ruta Get/login 
+rutas.get("/login", ctrlLogin)
 // Ruta GET /
 rutas.get('/',ctrlmsjBienvenida);
 // Ruta GET /productos
