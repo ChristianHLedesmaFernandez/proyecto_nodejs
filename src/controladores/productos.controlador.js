@@ -5,7 +5,7 @@ import {
         mdlGuardarProducto,
         mdlModificarProducto,
         mdlborrarProducto
-} from '../modelos/productos.modelos.js';
+} from '../modelos/productos.modelo.js';
 import { 
     esNombre, 
     esDescripcion, 
@@ -15,10 +15,6 @@ import {
 } from "../funciones.js";
 
 //                                                      GET
-
-export const ctrlLogin = async (req, res) => {
-    res.json("Logear");
-};
 export const  ctrlmsjBienvenida = async (req, res) => {
     res.json([
     ' Proyecto Final Curso NODE JS ',

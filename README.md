@@ -60,3 +60,15 @@ http://localhost:3000/api/productos/:id
 
 Borra el producto que coincida con al ID dado.
 
+
+Usuarios:
+        usuario:  christian
+        password: chris123
+        rol:      admin
+
+        usuario:  paul
+        password: paul1234
+        rol:      user
+
+Nota: El usuario "admin" puede consultar, editar eliminar y crear productos.
+      El usuario "user" solo puede listar consultar productos

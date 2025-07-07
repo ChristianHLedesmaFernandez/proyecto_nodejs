@@ -1,6 +1,7 @@
 import express from "express";
 import cors from 'cors'
-import rutasProductos from './src/rutas/productos.rutas.js';
+import rutasProductos from './src/rutas/productos.ruta.js';
+import rutasAutenticacion from './src/rutas/autenticacion.ruta.js';
 
 
 const app = express();
@@ -16,6 +17,9 @@ app.use(cors()); // Permitir origenes crusados.
 //app.use(express.static("public"));
 app.use(express.json());
 
+
+// Uso del router en la ruta /api/products
+app.use('/autenticacion', rutasAutenticacion);
 
 
 // Uso del router en la ruta /api/products
