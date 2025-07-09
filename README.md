@@ -32,7 +32,7 @@ http://localhost:3000/api/productos
 
 body:
     { 
-        "nombre": "dfsdf",	        
+        "nombre": "Fernet con Coca",	        
         "descripcion": "Fernet con coca cola", 	                            
         "stock": 2,	
         "precio": 7,	    
@@ -70,5 +70,27 @@ Usuarios:
         password: paul1234
         rol:      user
 
-Nota: El usuario "admin" puede consultar, editar eliminar y crear productos.
-      El usuario "user" solo puede listar consultar productos
+Nota: El usuario "admin" puede listar, consultar por ID o buscar por campos, editar, eliminar y crear productos.
+      El usuario "user" solo puede listar y consultar por ID productos.
+      Sin login solo puede listar los productos.
+
+GET 
+
+http://localhost:3000/autenticacion/usuarios
+
+Para verificar los usuarios que estan en la base (Solo para control y verigicar los datos dentro de la coleccion Usuarios).
+
+
+POST 
+http://localhost:3000/autenticacion/login
+
+body:
+    { 
+        "usuario": "christian",
+        "passsword": "chris123"
+    }
+
+Loguearse, genera el token JWT
+
+
+
