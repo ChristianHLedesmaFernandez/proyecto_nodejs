@@ -62,9 +62,11 @@ Borra el producto que coincida con al ID dado.
 
 
 Usuarios:
+
         usuario:  christian
         password: chris123
         rol:      admin
+
 
         usuario:  paul
         password: paul1234
