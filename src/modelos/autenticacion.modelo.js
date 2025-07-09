@@ -2,11 +2,6 @@ import { db } from '../data/data.js';
 import {
     collection,
     getDocs,
-    getDoc,
-    addDoc,
-    updateDoc,
-    deleteDoc,
-    doc,
     query,
     where
 } from 'firebase/firestore';

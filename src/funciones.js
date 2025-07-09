@@ -9,26 +9,19 @@ const secret_key = process.env.JWT_SECRET_KEY;
 
 // Función para generar un token JWT 
 export const generarToken = (userData) => { 
-  const user = {id: userData.id, email: userData.email, rol: userData.rol};   // datos del usuario
-  const expiration = { expiresIn: '1h' };                                     // tiempo de expiracion 
-  return jwt.sign(user, secret_key, expiration);                              // Generando Token
+  const user = {id: userData.id, usuario: userData.usuario, rol: userData.rol};   // datos del usuario
+  const expiration = { expiresIn: '1h' };                                         // tiempo de expiracion 
+  return jwt.sign(user, secret_key, expiration);                                  // Generando Token
 };
 // Encriptar Password
 export const encriptarPass = (password) => {
   let passwordHash = bcrypt.hashSync(password, 8);
 return passwordHash;
 };
-
-// Comparar Contraseña
-export const comparaPass = (password, password2) => {
-
-  if( password == password2){
-    return true;
-  } else{
-    return false
-  }
+// Comparar Password
+export const comparaPass = async (password, password2) => {
+  return bcrypt.compare (password,  password2 );
 };
-
 
 // Funciones auxiliares
 const expresiones = {  

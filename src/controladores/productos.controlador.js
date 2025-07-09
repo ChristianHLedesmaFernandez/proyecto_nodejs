@@ -150,7 +150,8 @@ export const ctrlborrarProducto = async(req, res) => {
     const productoId = req.params.id;
     try {
         const producto = await mdlborrarProducto(productoId);
-     res.status(204).send();
+        console.log("producto eliminado: ", productoId);
+        res.status(204).send();
     } catch (error) {
         res.status(400).json({ error: error.message });
     }  
