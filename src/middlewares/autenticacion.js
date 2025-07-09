@@ -7,7 +7,7 @@ const secret_key = process.env.JWT_SECRET_KEY;
 export const autenticacion = (req, res, next) => {
     const tokenJWT = req.headers['authorization'];
     if (!tokenJWT || !tokenJWT.startsWith("Bearer ")) {
-        return res.status(401).json({ error: "Token no proporcionado o formato inválido" });
+        return res.status(401).json({ error: "Debe Loguearse" });
     }
     const token = tokenJWT.split(" ")[1];
     jwt.verify(token, secret_key, (err, decoded) => {
