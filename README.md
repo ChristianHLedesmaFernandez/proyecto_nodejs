@@ -1,99 +1,213 @@
-proyecto_nodejs
+# 🧩 API REST - Proyecto Node.js
 
+Servidor desarrollado con **Node.js** y **Express**, conectado a **Firebase** (Firestore), que expone una API REST para la gestión de productos.
 
-Api REST 
+---
 
-servidor que responde a las siguientes consultas.
+## 📦 Funcionalidades
 
-                                                            GET            
-http://localhost:3000/api
+- Listado completo de productos
+- Búsqueda por ID o campo personalizado
+- Alta, modificación y eliminación de productos
+- Autenticación con JWT
+- Control de acceso por roles (`admin`, `user`, anónimo)
 
-Da un mensaje de bienvenida.
+---
 
-http://localhost:3000/api/productos
+## 🚀 Instalación y ejecución local
 
-Devuelve toda la coleccion
+1. Clonar el repositorio:
 
-http://localhost:3000/api/productos/:id
+```bash
+git clone https://github.com/ChristianHLedesmaFernandez/proyecto_nodejs.git
+cd proyecto_nodejs
+```
 
-Devuelve el producto que coincida con el id
+2. Instalar dependencias:
 
-http://localhost:3000/api/productos/buscar?{campo}={valor}
+```bash
+npm install
+```
 
-Devuelve el producto que coincida con el campo y valor dado
+3. Configurar variables de entorno (Firebase, JWT, etc.)
 
-Ej:
-  http://localhost:3000/api/productos/buscar?nombre=licuado de fresa
+4. Ejecutar el servidor en modo desarrollo:
 
-  http://localhost:3000/api/productos/buscar?categoria=Tragos
+```bash
+npm run dev
+```
 
-                                                            POST
-http://localhost:3000/api/productos
+---
 
-body:
-    { 
-        "nombre": "Fernet con Coca",	        
-        "descripcion": "Fernet con coca cola", 	                            
-        "stock": 2,	
-        "precio": 7,	    
-        "categoria": "Tragos"
-    }
+## 🌐 Endpoints de la API
 
-Verifica el correcto ingreso de datos,
-luego guarda en la base de datos.
-                                                            PUT
-http://localhost:3000/api/productos/:id
+### 📍 Ruta base
 
-body:
-    { 
-        "nombre": "dfsdf",
-        "precio": 7,	    
-        "categoria": "Tragos"
-    }
+```
+GET /api
+```
+**Respuesta:** Mensaje de bienvenida.
+
+---
+
+### 📋 Productos
+
+#### ✅ Obtener todos los productos
+
+```
+GET /api/productos
+```
+
+#### 🔎 Buscar producto por ID
+
+```
+GET /api/productos/:id
+```
+
+#### 🔍 Buscar producto por campo
+
+```
+GET /api/productos/buscar?{campo}={valor}
+```
+
+**Ejemplos:**
+
+- `/api/productos/buscar?nombre=licuado de fresa`
+- `/api/productos/buscar?categoria=Tragos`
+
+---
+
+#### ➕ Crear producto
+
+```
+POST /api/productos
+```
+
+**Body (JSON):**
+
+```json
+{
+  "nombre": "Fernet con Coca",
+  "descripcion": "Fernet con coca cola",
+  "stock": 2,
+  "precio": 7,
+  "categoria": "Tragos"
+}
+```
+
+Valida los datos y guarda el producto en la base.
+
+---
+
+#### ✏️ Editar producto
+
+```
+PUT /api/productos/:id
+```
+
+**Body (ejemplo):**
+
+```json
+{
+  "nombre": "dfsdf",
+  "precio": 7,
+  "categoria": "Tragos"
+}
+```
+
+Modifica solo los campos enviados del producto indicado por ID.
+
+---
+
+#### 🗑️ Eliminar producto
+
+```
+DELETE /api/productos/:id
+```
+
+Elimina el producto con el ID especificado.
+
+---
+
+## 👤 Autenticación
+
+### 🔍 Ver usuarios (uso interno)
+
+```
+GET /autenticacion/usuarios
+```
+
+Permite ver los usuarios almacenados en la base de datos (solo con fines de prueba).
+
+---
+
+### 🔐 Login
+
+```
+POST /autenticacion/login
+```
+
+**Body (JSON):**
+
+```json
+{
+  "usuario": "christian",
+  "passsword": "chris123"
+}
+```
+
+Devuelve un token JWT si las credenciales son válidas.
+
+---
+
+## 🛡️ Control de Acceso
+
+| Usuario   | Contraseña | Rol   | Permisos                                                                 |
+|-----------|------------|--------|--------------------------------------------------------------------------|
+| christian | chris123   | admin  | Crear, leer, buscar, editar y eliminar productos                         |
+| paul      | paul1234   | user   | Leer y buscar productos                                                  |
+| (sin login) | -        | público | Solo puede listar todos los productos (`GET /api/productos`)             |
+
+---
+
+## 🌍 Versión en producción
+
+🔗 [https://proyecto-nodejs-tau.vercel.app](https://proyecto-nodejs-tau.vercel.app)
+
+---
+
+## 📁 Estructura del proyecto
+
+```
+src/
+├── Controladores/
+│    ├── autenticacion.controlador.js
+│    └── productos.controlador.js
+│
+├── Modelos/
+│    ├── autenticacion.modelo.js
+│    └── prouctos.modelo.js
+│
+└── Routes/
+    ├── autenticacion.ruta.js
+    └── products.router.js
+
+```
     
-Modifica el producto que coincida con el ID dado.
-Solo modifica los campos dados.
+---
 
+## 🛠️ Tecnologías utilizadas
 
-                                                           DELETE
-http://localhost:3000/api/productos/:id
+- Node.js
+- Express.js
+- Firebase Firestore
+- JWT
+- Vercel (deploy)
 
-Borra el producto que coincida con al ID dado.
+---
 
+## ✍️ Autor
 
-Usuarios:
-
-        usuario:  christian
-        password: chris123
-        rol:      admin
-
-
-        usuario:  paul
-        password: paul1234
-        rol:      user
-
-Nota: El usuario "admin" puede listar, consultar por ID o buscar por campos, editar, eliminar y crear productos.
-      El usuario "user" solo puede listar y consultar por ID productos.
-      Sin login solo puede listar los productos.
-
-GET 
-
-http://localhost:3000/autenticacion/usuarios
-
-Para verificar los usuarios que estan en la base (Solo para control y verigicar los datos dentro de la coleccion Usuarios).
-
-
-POST 
-http://localhost:3000/autenticacion/login
-
-body:
-    { 
-        "usuario": "christian",
-        "passsword": "chris123"
-    }
-
-Loguearse, genera el token JWT
-
-vercel: 
-
-https://proyecto-nodejs-tau.vercel.app/
+**Christian H. Ledesma Fernández**  
+📧 christianhledesmafernadez@gmail.com  
+📍 Buenos Aires, Argentina
