@@ -152,7 +152,7 @@ POST /autenticacion/login
 ```json
 {
   "usuario": "christian",
-  "passsword": "chris123"
+  "passsword": "********"
 }
 ```
 
@@ -164,7 +164,7 @@ Devuelve un token JWT si las credenciales son válidas.
 
 | Usuario   | Contraseña | Rol   | Permisos                                                                 |
 |-----------|------------|--------|--------------------------------------------------------------------------|
-| christian | chris123   | admin  | Crear, leer, buscar, editar y eliminar productos                         |
+| christian | ********   | admin  | Crear, leer, buscar, editar y eliminar productos                         |
 | paul      | paul1234   | user   | Leer y buscar productos                                                  |
 | (sin login) | -        | público | Solo puede listar todos los productos (`GET /api/productos`)             |
 
